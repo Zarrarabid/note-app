@@ -54,6 +54,7 @@ function Main() {
                         setNotes={setNotes}
                         notes={notes}
                         valueEdited={valueEdited}
+                        setValueEdited={setValueEdited}
                         setDeleteData={setDeleteData}
                         deleteData={deleteData}
                     />

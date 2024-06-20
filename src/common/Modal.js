@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 function Modal(props) {
   const { 
     setOpenModal, 
+    setValueEdited,
     notes, 
     setNotes, 
     valueEdited, 
@@ -22,12 +23,13 @@ function Modal(props) {
     setCategory("");
     setTitle("");
     setDeleteData(false);
+    setValueEdited()
   };
   return (
     <div >
       <div className="animate__animated animate__fadeInDownBig card w-100 p-3">
         <div className="d-flex justify-content-between align-items-center">
-          <h4>{deleteData ? "Confirmation" : "Add Note"}</h4>
+          <h4>{deleteData ? "Confirmation" : valueEdited ? " Update Note" : "Add Note"}</h4>
           <svg
             onClick={() => {
               resetFields();
@@ -121,7 +123,9 @@ function Modal(props) {
                 setOpenModal(false)
                 toast.success("Data removed from LocalStorage")
                 localStorage.removeItem("notes",JSON.stringify(notes))
-                window.location.reload()
+                setTimeout(() => {
+                  window.location.reload()
+                }, 3000);
             }}
             className='Save_dataBtn'>
             Delete
