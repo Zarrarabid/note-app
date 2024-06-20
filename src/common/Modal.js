@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import "./modal.css";
+import { toast } from "react-toastify";
 
 function Modal(props) {
-  const { setOpenModal, notes, setNotes, valueEdited, setSaveData, saveData } =
-    props;
+  const { 
+    setOpenModal, 
+    notes, 
+    setNotes, 
+    valueEdited, 
+    setDeleteData, 
+    deleteData ,
+  } = props;
   const [title, setTitle] = useState("" || valueEdited?.title);
   const [desc, setDesc] = useState("" || valueEdited?.description);
   const [category, setCategory] = useState(
@@ -14,13 +21,13 @@ function Modal(props) {
     setDesc("");
     setCategory("");
     setTitle("");
-    setSaveData(false);
+    setDeleteData(false);
   };
   return (
     <div >
       <div className="animate__animated animate__fadeInDownBig card w-100 p-3">
         <div className="d-flex justify-content-between align-items-center">
-          <h4>{saveData ? "Confirmation" : "Add Note"}</h4>
+          <h4>{deleteData ? "Confirmation" : "Add Note"}</h4>
           <svg
             onClick={() => {
               resetFields();
@@ -40,7 +47,7 @@ function Modal(props) {
         </div>
         <hr></hr>
         <div className="col-12 px-0">
-          {saveData ? (
+          {deleteData ? (
             <div style={{filter:'none'}} className="row flex-column align-items-center text-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -106,16 +113,18 @@ function Modal(props) {
           )}
         </div>
         <hr></hr>
-        <div className={saveData ? "d-flex justify-content-end" : "d-flex justify-content-between"}>
-          {saveData ?
+        <div className={deleteData ? "d-flex justify-content-end" : "d-flex justify-content-between"}>
+          {deleteData ?
             <button 
             onClick={() => {
                 resetFields()
                 setOpenModal(false)
+                toast.success("Data removed from LocalStorage")
                 localStorage.removeItem("notes",JSON.stringify(notes))
+                window.location.reload()
             }}
             className='Save_dataBtn'>
-            Submit
+            Delete
         </button>
             :
             <>
@@ -145,6 +154,7 @@ function Modal(props) {
                   },
                   ...notes?.slice(findIndex + 1),
                 ]);
+                toast.success("Note updated successfully")
               } else {
                 if (notes?.length > 0) {
                   setNotes([
@@ -168,13 +178,14 @@ function Modal(props) {
                     },
                   ]);
                 }
+                toast.success("Note added successfully")
               }
               resetFields();
               setOpenModal(false);
             }}
             className="modal_action-btn"
           >
-            Add
+            {valueEdited ? "Update" : "Add"}
           </button>
           </>
           }
