@@ -1,0 +1,9 @@
+
+.desc,.title{
+    color: var(--common-text);
+}
+.input_checkbox{
+    accent-color: #3ABEF9;
+    height: 22px;
+    width: 22px
+}

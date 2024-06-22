@@ -11,6 +11,8 @@ function Modal(props) {
     valueEdited, 
     setDeleteData, 
     deleteData ,
+    theme,
+    setLoader
   } = props;
   const [title, setTitle] = useState("" || valueEdited?.title);
   const [desc, setDesc] = useState("" || valueEdited?.description);
@@ -29,7 +31,7 @@ function Modal(props) {
     <div >
       <div className="animate__animated animate__fadeInDownBig card w-100 p-3">
         <div className="d-flex justify-content-between align-items-center">
-          <h4>{deleteData ? "Confirmation" : valueEdited ? " Update Note" : "Add Note"}</h4>
+          <h4 className="heading_modal">{deleteData ? "Confirmation" : valueEdited ? " Update Note" : "Add Note"}</h4>
           <svg
             onClick={() => {
               resetFields();
@@ -47,7 +49,7 @@ function Modal(props) {
             ></path>
           </svg>
         </div>
-        <hr></hr>
+        <hr className="divider"></hr>
         <div className="col-12 px-0">
           {deleteData ? (
             <div style={{filter:'none'}} className="row flex-column align-items-center text-center">
@@ -62,7 +64,7 @@ function Modal(props) {
                   d="M22.239 18.451L13.442 3.816C13.135 3.305 12.596 3 12 3s-1.135.305-1.441.815L1.761 18.451A1.684 1.684 0 003.203 21h17.595a1.683 1.683 0 001.441-2.549zM13 18h-2v-2h2v2zm0-4h-2V9h2v5z"
                 ></path>
               </svg>
-              <h5>Are you sure you want to delete data from localStorage</h5>
+              <h5 className="confirmation">Are you sure you want to delete data from localStorage</h5>
             </div>
           ) : (
             <div className="row">
@@ -114,7 +116,7 @@ function Modal(props) {
             </div>
           )}
         </div>
-        <hr></hr>
+        <hr className="divider"></hr>
         <div className={deleteData ? "d-flex justify-content-end" : "d-flex justify-content-between"}>
           {deleteData ?
             <button 
@@ -123,8 +125,9 @@ function Modal(props) {
                 setOpenModal(false)
                 toast.success("Data removed from LocalStorage")
                 localStorage.removeItem("notes",JSON.stringify(notes))
+                setLoader(true)
                 setTimeout(() => {
-                  window.location.reload()
+                  setLoader(false)
                 }, 3000);
             }}
             className='Save_dataBtn'>
@@ -186,6 +189,10 @@ function Modal(props) {
               }
               resetFields();
               setOpenModal(false);
+              setLoader(true)
+              setTimeout(() => {
+                setLoader(false)
+              }, 3000);
             }}
             className="modal_action-btn"
           >

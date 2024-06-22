@@ -1,6 +1,16 @@
-.header-menu {
+#header-menu {
     border: none;
     background-color: transparent;
+    border-bottom: 1px solid ;
+    border-color: var(--border-color-common);
+    color: var(--common-text);
+}
+#header-Menu-Active{
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid;
+  border-color: var(--common-text);
+  color: var(--common-text);
 }
 .Save_dataBtn {
     background-color: white;
@@ -26,3 +36,4 @@
 
   
 
+ 
