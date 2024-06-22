@@ -1,4 +1,39 @@
-.header-menu {
+#header-menu {
     border: none;
     background-color: transparent;
+    border-bottom: 1px solid ;
+    border-color: var(--border-color-common);
+    color: var(--common-text);
 }
+#header-Menu-Active{
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid;
+  border-color: var(--common-text);
+  color: var(--common-text);
+}
+.Save_dataBtn {
+    background-color: white;
+    color: #FF6969;
+    border-radius: 0.5em !important;
+    font-weight: 600;
+    padding: 0.3em 2em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #FF6969;
+    box-shadow: 0 0 0 0 #FF6969;
+  }
+  
+  .Save_dataBtn:hover {
+    transform: translateY(-4px) translateX(-2px);
+    box-shadow: 2px 5px 0 0 #FF6969;
+  };
+  
+  .Save_dataBtn:active {
+    transform: translateY(2px) translateX(1px);
+    box-shadow: 0 0 0 0 #FF6969;
+  };
+
+  
+
+ 
