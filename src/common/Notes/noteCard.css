@@ -1,6 +1,9 @@
 
-.desc,.title{
-    color: var(--common-text);
+.desc{
+    color: var(--common-text) !important;
+}
+.title{
+    color: var(--common-text) !important;
 }
 .input_checkbox{
     accent-color: #3ABEF9;
