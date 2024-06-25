@@ -148,17 +148,19 @@ function NoteCard(props) {
                 </div>
                 <div>
                   <h5
-                    id="title"
+                    // id="title"
                     style={{
                       textDecoration: notes[index]?.checked && "line-through",
+                      color: theme ? "black" : "white"
                     }}
                   >
                     {item?.title}
                   </h5>
                   <p
-                    id="desc"
+                    // id="desc"
                     style={{
                       textDecoration: notes[index]?.checked && "line-through",
+                      color: theme ? "black" : "white"
                     }}
                   >
                     {item?.description}
